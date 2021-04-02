@@ -29,7 +29,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'length' => 20,
                     'nullable' => false,
                     'default' => '',
-                    'comment' => 'price'
+                    'comment' => 'Price'
                 ]
 
             );

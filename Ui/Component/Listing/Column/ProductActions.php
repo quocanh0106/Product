@@ -89,13 +89,13 @@ class ProductActions extends Column
                         'label' => __('Edit'),
                         '__disableTmpl' => true,
                     ];
-                    $title = $this->getEscaper()->escapeHtml($item['title']);
+                    $name = $this->getEscaper()->escapeHtml($item['name']);
                     $item[$name]['delete'] = [
                         'href' => $this->urlBuilder->getUrl(self::CMS_URL_PATH_DELETE, ['id' => $item['id']]),
                         'label' => __('Delete'),
                         'confirm' => [
-                            'title' => __('Delete %1', $title),
-                            'message' => __('Are you sure you want to delete a %1 record?', $title),
+                            'name' => __('Delete %1', $name),
+                            'message' => __('Are you sure you want to delete a %1 record?', $name),
                             '__disableTmpl' => true,
                         ],
                         'post' => true,

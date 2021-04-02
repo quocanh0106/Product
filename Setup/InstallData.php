@@ -18,9 +18,9 @@ class InstallData implements InstallDataInterface
     {
 
         $data = [
-            'title' => "Product 1", 
-            'images' => "test.jpg",
-            'description' => "Product 1"
+            'name' => "blazer", 
+            'images' => "blazer.jpg",
+            'description' => "blazer is great clothes"
         ];
         $post = $this->_postFactory->create();
         $post->addData($data)->save();

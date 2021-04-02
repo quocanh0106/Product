@@ -34,11 +34,11 @@ class InstallSchema implements InstallSchemaInterface
                 'ID'
             )
             ->addColumn(
-                'title',
+                'name',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false, 'default' => ''],
-                    'title'
+                    'Product name'
             )
             ->addColumn(
                 'images',
@@ -52,14 +52,14 @@ class InstallSchema implements InstallSchemaInterface
                 \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
                 255,
                 ['nullable' => false],
-                    'categoryid'
+                    'Categoryid'
             )
             ->addColumn(
                 'description',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false],
-                    'description'
+                    'Description'
             );
         $setup->getConnection()->createTable($table);
 
@@ -77,7 +77,7 @@ class InstallSchema implements InstallSchemaInterface
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false],
-                    'name'
+                    'Category Name'
             );
         $setup->getConnection()->createTable($table);
       }

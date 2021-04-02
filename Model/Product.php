@@ -48,13 +48,13 @@ class Product extends \Magento\Framework\Model\AbstractModel implements Identity
         $this->setData('id', $id);
     }
      
-    public function getTitle()
+    public function getName()
     {
-        return $this->getData('title');
+        return $this->getData('name');
     }
-    public function setTitle($title)
+    public function setName($name)
     {
-        $this->setData('title', $title);
+        $this->setData('name', $name);
     } 
 
     public function getImages()
@@ -91,14 +91,5 @@ class Product extends \Magento\Framework\Model\AbstractModel implements Identity
     public function setPrice($price)
     {
         $this->getData('price', $price);
-    } 
-
-    public function getContent()
-    {
-        return $this->getData('content');
-    }
-    public function setContent($content)
-    {
-        $this->setData('content', $content);
     } 
 }

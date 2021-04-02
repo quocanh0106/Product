@@ -55,16 +55,16 @@
                 <item name="label" xsi:type="string"/>
             </item>
         </argument>
-        <field name="title">
+        <field name="name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Title</item>
+                    <item name="label" xsi:type="string" translate="true">Product name</item>
                     <item name="formElement" xsi:type="string">input</item>
                     <item name="source" xsi:type="string">title</item>
                     <item name="sortOrder" xsi:type="number">1</item>
                     <item name="dataScope" xsi:type="string">title</item>
-                    <item name="notice" xsi:type="string" translate="true">Enter title here</item>
+                    <item name="notice" xsi:type="string" translate="true">Enter Product name here</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
@@ -87,7 +87,24 @@
                 </select>
             </formElements>
         </field>
-
+        <field name="image" formElement="imageUploader">
+            <settings>
+                <notice translate="true">Some notice.</notice>
+                <label translate="true">Image Uploader Example</label>
+                <componentType>imageUploader</componentType>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>2097152</maxFileSize>
+                        <uploaderConfig>
+                            <param xsi:type="string" name="url">product/index/upload</param>
+                        </uploaderConfig>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
         <field name="description" sortOrder="4">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -109,18 +126,6 @@
                     <item name="source" xsi:type="string">price</item>
                     <item name="sortOrder" xsi:type="number">4</item>
                     <item name="dataScope" xsi:type="string">price</item>
-                </item>
-            </argument>
-        </field>
-        <field name="content" sortOrder="6">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Content</item>
-                    <item name="formElement" xsi:type="string">textarea</item>
-                    <item name="source" xsi:type="string">product</item>
-                    <item name="sortOrder" xsi:type="number">5</item>
-                    <item name="dataScope" xsi:type="string">content</item>
                 </item>
             </argument>
         </field>

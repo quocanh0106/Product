@@ -19,9 +19,9 @@ class UpgradeData implements UpgradeDataInterface
 	{
 		if (version_compare($context->getVersion(), '1.0.2', '<')) {
 			$data = [
-				'title' => "Product 2", 
-				'images' => "test.jpg Upgrade Data",
-				'description' => "Product 2"
+				'title' => "Blazer 2", 
+				'images' => "blazer2.jpg",
+				'description' => "blazer is great clothes"
 			];
 			$post = $this->_postFactory->create();
 			$post->addData($data)->save();
