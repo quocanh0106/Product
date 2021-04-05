@@ -91,7 +91,7 @@ interface ProductInterface
     /**
      * Set product price
      *
-     * @param string $name
+     * @param string $price
      * @return null
      */
     public function setPrice($price);

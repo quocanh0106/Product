@@ -94,7 +94,8 @@ class Save extends \AHT\Product\Controller\Adminhtml\Product implements HttpPost
             }
             $data['images'] = $imageName;
             $model->setData($data);      
-            
+            // var_dump($data);
+            // die();
             try {
                 $this->blockRepository->save($model);
                 /*$model->save();*/
