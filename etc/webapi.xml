@@ -38,4 +38,36 @@
             <resource ref="anonymous"/>
         </resources>
     </route>
+
+    <!-- AHT Category -->
+    <route url="/V1/Category/:id" method="GET">
+        <service class="AHT\Product\Api\CategoryRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/Category" method="GET">
+        <service class="AHT\Product\Api\CategoryRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+     <route url="/V1/Category" method="POST">
+        <service class="AHT\Product\Api\CategoryRepositoryInterface" method="createPost"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/Category/:id" method="PUT">
+        <service class="AHT\Product\Api\CategoryRepositoryInterface" method="updatePost"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route  url="/V1/Category/:postId" method="DELETE">
+        <service class="AHT\Product\Api\CategoryRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
 </routes>

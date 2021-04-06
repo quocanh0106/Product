@@ -17,6 +17,8 @@
         <arguments>
             <argument name="mainTable" xsi:type="string">aht_category</argument>
             <argument name="resourceModel" xsi:type="string">AHT\Product\Model\ResourceModel\Category</argument>
+            <argument name="eventPrefix" xsi:type="string">AHT_Category_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">field_grid_collection</argument>
         </arguments>
     </virtualType>
     <!-- register our data source: Dang ky nguon du lieu -->
@@ -28,17 +30,20 @@
         </arguments>
     </type>
 
-      <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
                 <item name="aht_category_listing_data_source" xsi:type="string">AHT\Product\Model\ResourceModel\Category\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
+
     <!-- End Configure -->
 
-    <!-- API -->
+    <!-- API Product-->
     <preference for="AHT\Product\Api\ProductRepositoryInterface" type="AHT\Product\Model\ProductRepository" />
     <preference for="AHT\Product\Api\Data\ProductInterface" type="AHT\Product\Model\Product"/>
-    
+    <!-- API Category -->
+    <preference for="AHT\Product\Api\CategoryRepositoryInterface" type="AHT\Product\Model\CategoryRepository" />
+    <preference for="AHT\Product\Api\Data\CategoryInterface" type="AHT\Product\Model\Category"/>
 </config>

@@ -3,13 +3,13 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace AHT\Product\Model\Product;
+namespace AHT\Product\Model\Category;
 
-use AHT\Product\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory ;
+use AHT\Product\Model\ResourceModel\Category\CollectionFactory as CategoryCollectionFactory ;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
 use Magento\Framework\App\ObjectManager;
-use AHT\Product\Model\Product\FileInfo;
+use AHT\Product\Model\Category\FileInfo;
 use Magento\Store\Model\StoreManagerInterface;
 
 /**
@@ -49,7 +49,7 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
         $name,
         $primaryFieldName,
         $requestFieldName,
-        ProductCollectionFactory $blockCollectionFactory,
+        CategoryCollectionFactory $blockCollectionFactory,
         DataPersistorInterface $dataPersistor,
         StoreManagerInterface $storeManager,
         array $meta = [],
@@ -79,13 +79,13 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
             $this->loadedData[$block->getId()] = $block->getData();
         }
 
-        $data = $this->dataPersistor->get('product');
+        $data = $this->dataPersistor->get('Category');
         
         if (!empty($data)) {
             $block = $this->collection->getNewEmptyItem();
             $block->setData($data);
             $this->loadedData[$block->getId()] = $block->getData();
-            $this->dataPersistor->clear('product');
+            $this->dataPersistor->clear('Category');
         }
 
         return $this->loadedData;

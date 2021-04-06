@@ -59,7 +59,7 @@ class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvide
             ->joinLeft('aht_category',
             'main_table.categoryid = aht_category.id',
             [
-                'aht_category.name'
+                'aht_category.name_cate'
             ]);
         $this->addFilterToMap('id', 'main_table.id');
         return $this;
