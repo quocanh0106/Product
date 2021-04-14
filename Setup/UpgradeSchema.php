@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
@@ -19,7 +20,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
      * {@inheritdoc}
      */
     public function upgrade(SchemaSetupInterface $setup, ModuleContextInterface $context)
-    {   
+    {
         if (version_compare($context->getVersion(), '1.0.1', '<')) {
             $setup->getConnection()->addColumn(
                 $setup->getTable('aht_product'),
@@ -33,7 +34,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 ]
 
             );
-        } ;
+        };
         if (version_compare($context->getVersion(), '1.0.3', '<')) {
             $setup->getConnection()->changeColumn(
                 $setup->getTable('aht_category'),
@@ -48,7 +49,20 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 ]
             );
         }
+        if (version_compare($context->getVersion(), '1.0.4', '<')) {
+            $setup->getConnection()->addColumn(
+                $setup->getTable('aht_product'),
+                'is_new',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+                    'length' => 1,
+                    'nullable' => false,
+                    'default' => '1',
+                    'comment' => 'Active to show'
+                ]
+
+            );
+        };
         $setup->endSetup();
     }
-
 }

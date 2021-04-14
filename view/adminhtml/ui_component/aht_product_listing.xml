@@ -76,7 +76,7 @@
                 </settings>
             </filterSelect>
         </filters>
-        <massaction name="listing_massaction">
+        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
             <action name="delete">
                 <settings>
                     <confirm>
@@ -97,6 +97,30 @@
                     <type>edit</type>
                     <label translate="true">Edit</label>
                 </settings>
+            </action>
+            <action name="change_status">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">status</item>
+                        <item name="label" xsi:type="string" translate="true">Change status</item>
+                    </item>
+                </argument>
+                <argument name="actions" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="type" xsi:type="string">disable</item>
+                        <item name="label" xsi:type="string" translate="true">Disable</item>
+                        <item name="url" xsi:type="url" path="product/index/MassStatus">
+                            <param name="is_new">0</param>
+                        </item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="type" xsi:type="string">enable</item>
+                        <item name="label" xsi:type="string" translate="true">Enable</item>
+                        <item name="url" xsi:type="url" path="product/index/MassStatus">
+                            <param name="is_new">1</param>
+                        </item>
+                    </item>
+                </argument>
             </action>
         </massaction>
         <paging name="listing_paging"/>
@@ -130,14 +154,14 @@
                 <resizeDefaultWidth>55</resizeDefaultWidth>
             </settings>
         </selectionsColumn>
-        <column name="id">
+        <column name="id" sortOrder="1">
             <settings>
                 <filter>textRange</filter>
                 <label translate="true">ID</label>
                 <sorting>asc</sorting>
             </settings>
         </column>
-        <column name="name">
+        <column name="name" sortOrder="2">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
@@ -151,18 +175,9 @@
                 </item>
             </argument>
         </column>
-        <column name="images" class="AHT\Product\Ui\Component\Listing\Column\Thumbnail">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
-                    <item name="sortable" xsi:type="boolean">false</item>
-                    <item name="altField" xsi:type="string">title</item>
-                    <item name="has_preview" xsi:type="string">1</item>
-                    <item name="label" xsi:type="string" translate="true">Image</item>
-                </item>
-            </argument>
-        </column>
-         <column name="description">
+
+
+        <column name="description" sortOrder="3">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
@@ -176,7 +191,7 @@
                 </item>
             </argument>
         </column>
-         <column name="price">
+        <column name="price" sortOrder="4">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
@@ -190,7 +205,32 @@
                 </item>
             </argument>
         </column>
-         <actionsColumn name="actions" class="AHT\Product\Ui\Component\Listing\Column\ProductActions">
+        <column name="images" class="AHT\Product\Ui\Component\Listing\Column\Thumbnail" sortOrder="5">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="altField" xsi:type="string">title</item>
+                    <item name="has_preview" xsi:type="string">1</item>
+                    <item name="label" xsi:type="string" translate="true">Image</item>
+                </item>
+            </argument>
+        </column>
+        <column name="is_new" sortOrder="6">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                </item>
+            </argument>
+        </column>
+        <actionsColumn name="actions" class="AHT\Product\Ui\Component\Listing\Column\ProductActions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="sortOrder" xsi:type="number">7</item>

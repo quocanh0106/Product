@@ -151,7 +151,7 @@
                 </item>
             </argument>
         </column>
-         <actionsColumn name="actions" class="AHT\Product\Ui\Component\Listing\Column\CategoryActions">
+        <actionsColumn name="actions" class="AHT\Product\Ui\Component\Listing\Column\CategoryActions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="sortOrder" xsi:type="number">7</item>

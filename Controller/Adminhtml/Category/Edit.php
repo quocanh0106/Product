@@ -1,9 +1,11 @@
 <?php
+
 /**
  *
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace AHT\Product\Controller\Adminhtml\Category;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;
@@ -45,7 +47,7 @@ class Edit extends \AHT\Product\Controller\Adminhtml\Category implements HttpGet
         // 1. Get ID and create model
         $id = $this->getRequest()->getParam('id');
         $model = $this->_objectManager->create(\AHT\Product\Model\Category::class);
-        
+
         // 2. Initial checking
         if ($id) {
             $model->load($id);

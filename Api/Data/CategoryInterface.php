@@ -35,5 +35,4 @@ interface CategoryInterface
      * @return null
      */
     public function setNameCate($name_cate);
-
 }

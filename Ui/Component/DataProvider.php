@@ -1,8 +1,10 @@
 <?php
+
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace AHT\Product\Ui\Component;
 
 use Magento\Framework\Api\Filter;

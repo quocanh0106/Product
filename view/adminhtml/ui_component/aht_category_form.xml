@@ -17,8 +17,8 @@
         <item name="template" xsi:type="string">templates/form/collapsible</item>
     </argument>
 
-     <!-- Khai báo nút bấm bên tay phải -->
-     <settings>
+    <!-- Khai báo nút bấm bên tay phải -->
+    <settings>
         <buttons>
             <button name="save" class="AHT\Product\Block\Adminhtml\Category\Edit\SaveButton"/>
             <!-- <button name="reset" class="AHT\Product\Block\Adminhtml\Category\Edit\ResetButton"/> -->
@@ -34,7 +34,7 @@
         <argument name="dataProvider" xsi:type="configurableObject">
             <argument name="class" xsi:type="string">AHT\Product\Model\Category\DataProvider</argument>
             <argument name="name" xsi:type="string">aht_category_form_data_source</argument>
-             <!-- Khóa chính của bảng -->
+            <!-- Khóa chính của bảng -->
             <argument name="primaryFieldName" xsi:type="string">id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
             <argument name="data" xsi:type="array">

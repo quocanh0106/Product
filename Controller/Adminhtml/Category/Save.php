@@ -1,9 +1,11 @@
 <?php
+
 /**
  *
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace AHT\Product\Controller\Adminhtml\Category;
 
 use Magento\Framework\App\Action\HttpPostActionInterface;
@@ -15,6 +17,7 @@ use AHT\Product\Api\CategoryRepositoryInterface;
 use AHT\Product\Model\Category;
 use AHT\Product\Model\CategoryFactory;
 use AHT\Product\Model\Category\ImageUploader;
+
 /**
  * Save CMS block action.
  */
@@ -58,7 +61,7 @@ class Save extends \AHT\Product\Controller\Adminhtml\Category implements HttpPos
         $this->blockRepository = $blockRepository
             ?: \Magento\Framework\App\ObjectManager::getInstance()->get(CategoryRepositoryInterface::class);
         // $this->imageUploader = $imageUploader;
-        parent::__construct($context, $coreRegistry);  
+        parent::__construct($context, $coreRegistry);
     }
     /**
      * Save action
@@ -95,9 +98,7 @@ class Save extends \AHT\Product\Controller\Adminhtml\Category implements HttpPos
             //     $imageName = '';
             // }
             // $data['images'] = $imageName;
-            $model->setData($data);      
-            // var_dump($data);
-            // die();
+            $model->setData($data);
             try {
                 // $this->blockRepository->save($model);
                 $model->save();
@@ -128,7 +129,7 @@ class Save extends \AHT\Product\Controller\Adminhtml\Category implements HttpPos
     private function processBlockReturn($model, $data, $resultRedirect)
     {
         $redirect = $data['back'] ?? 'close';
-        if ($redirect ==='continue') {
+        if ($redirect === 'continue') {
             $resultRedirect->setPath('*/*/edit', ['id' => $model->getId()]);
         } else if ($redirect === 'close') {
             $resultRedirect->setPath('*/*/');

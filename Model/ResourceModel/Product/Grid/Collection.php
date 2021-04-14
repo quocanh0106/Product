@@ -1,4 +1,5 @@
 <?php
+
 namespace AHT\Product\Model\ResourceModel\Product\Grid;
 
 use AHT\Product\Model\Product;
@@ -12,7 +13,7 @@ use Psr\Log\LoggerInterface as Logger;
 
 class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult
 {
-   /**
+    /**
      * Value of seconds in one minute
      */
     const SECONDS_IN_MINUTE = 60;
@@ -56,11 +57,29 @@ class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvide
     {
         $this->getSelect()
             ->from(['main_table' => 'aht_product'])
-            ->joinLeft('aht_category',
-            'main_table.categoryid = aht_category.id',
-            [
-                'aht_category.name_cate'
-            ]);
+            ->joinLeft(
+                'aht_category',
+                'main_table.categoryid = aht_category.id',
+                [
+                    'aht_category.name_cate'
+                ]
+                );
+        $this->addFilterToMap('id', 'main_table.id');
+        return $this;
+    }
+    protected function newProduct()
+    {
+        $this->getSelect()
+            ->from(['main_table' => 'aht_product'])
+            ->joinLeft(
+                'aht_category',
+                'main_table.categoryid = aht_category.id',
+                [
+                    'aht_category.name_cate'
+                ]
+            )
+            ->order('id' .' '. \Magento\Framework\DB\Select::SQL_DESC)
+            ->addFieldToFilter('is_new',1);
         $this->addFilterToMap('id', 'main_table.id');
         return $this;
     }

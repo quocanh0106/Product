@@ -1,4 +1,5 @@
 <?php
+
 namespace AHT\Product\Api;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
@@ -28,7 +29,7 @@ interface CategoryRepositoryInterface
      * @return \AHT\Product\Api\Data\CategoryInterface
      */
     public function getList();
-    
+
     /**
      * Create post.
      *

@@ -1,4 +1,5 @@
 <?php
+
 namespace AHT\Product\Model\ResourceModel\Product;
 
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
@@ -16,5 +17,4 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
 	{
 		$this->_init('AHT\Product\Model\Product', 'AHT\Product\Model\ResourceModel\Product');
 	}
-
 }

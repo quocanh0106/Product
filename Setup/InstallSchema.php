@@ -1,8 +1,9 @@
 <?php
+
 /**
-* Copyright © 2016 Magento. All rights reserved.
-* See COPYING.txt for license details.
-*/
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 
 namespace AHT\Product\Setup;
 
@@ -16,14 +17,14 @@ use Magento\Framework\Setup\SchemaSetupInterface;
 class InstallSchema implements InstallSchemaInterface
 {
     /**
-    * {@inheritdoc}
-    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
-    */
+     * {@inheritdoc}
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     */
     public function install(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
-          /**
-          * Create table 'greeting_message'
-          */
+        /**
+         * Create table 'greeting_message'
+         */
         $table = $setup->getConnection()
             ->newTable($setup->getTable('aht_product'))
             ->addColumn(
@@ -38,7 +39,7 @@ class InstallSchema implements InstallSchemaInterface
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false, 'default' => ''],
-                    'Product name'
+                'Product name'
             )
             ->addColumn(
                 'images',
@@ -52,14 +53,14 @@ class InstallSchema implements InstallSchemaInterface
                 \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
                 255,
                 ['nullable' => false],
-                    'Categoryid'
+                'Categoryid'
             )
             ->addColumn(
                 'description',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false],
-                    'Description'
+                'Description'
             );
         $setup->getConnection()->createTable($table);
 
@@ -77,8 +78,8 @@ class InstallSchema implements InstallSchemaInterface
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable' => false],
-                    'Category Name'
+                'Category Name'
             );
         $setup->getConnection()->createTable($table);
-      }
+    }
 }

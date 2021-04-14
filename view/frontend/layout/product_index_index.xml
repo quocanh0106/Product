@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Index</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="AHT\Product\Block\Frontend\Product\Index" name="product_index_index" template="product/index.phtml" ifconfig="product/product/is_enable"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:helloworld:Magento_Widget:etc/widget.xsd">
+    <widget class="AHT\Product\Block\Frontend\Product\Index" id="aht_product_slider">
+        <label>Product Slider</label>
+        <description>Posts</description>
+        <parameters>
+            <parameter name="slidetoshow" visible="true" xsi:type="text">
+                <label>Slide to show</label>
+            </parameter>
+            <parameter name="slidetoscroll" xsi:type="select" visible="true" required="true" sort_order="20">
+                <label translate="true">Slide to scroll</label>
+                <options>
+                    <option name="1" value="1">
+                        <label>1</label>
+                    </option>
+                    <option name="2" value="2" selected="true">
+                        <label>2</label>
+                    </option>
+                    <option name="3" value="3">
+                        <label>3</label>
+                    </option>
+                    <option name="4" value="4">
+                        <label>4</label>
+                    </option>
+                    <option name="5" value="5">
+                        <label>5</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="product/index.phtml" selected="true">
+                        <label translate="true">Product list slider</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

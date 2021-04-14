@@ -1,11 +1,13 @@
 <?php
+
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace AHT\Product\Model\Product;
 
-use AHT\Product\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory ;
+use AHT\Product\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
 use Magento\Framework\App\ObjectManager;
@@ -32,7 +34,7 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
      */
     protected $loadedData;
     private $fileInfo;
-    protected $_storeManager;   
+    protected $_storeManager;
     /**
      * Constructor
      *
@@ -62,7 +64,7 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data, $pool);
     }
 
-    
+
     /**
      * Get data
      *
@@ -80,7 +82,7 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
         }
 
         $data = $this->dataPersistor->get('product');
-        
+
         if (!empty($data)) {
             $block = $this->collection->getNewEmptyItem();
             $block->setData($data);
@@ -90,5 +92,4 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
 
         return $this->loadedData;
     }
-    
 }

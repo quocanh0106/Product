@@ -1,8 +1,10 @@
 <?php
+
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace AHT\Product\Ui\Component\Listing\Column;
 
 use Magento\Cms\Block\Adminhtml\Page\Grid\Renderer\Action\UrlBuilder;
@@ -81,7 +83,7 @@ class CategoryActions extends Column
     public function prepareDataSource(array $dataSource)
     {
         if (isset($dataSource['data']['items'])) {
-            foreach ($dataSource['data']['items'] as & $item) {
+            foreach ($dataSource['data']['items'] as &$item) {
                 $name = $this->getData('name');
                 if (isset($item['id'])) {
                     $item[$name]['edit'] = [
@@ -102,7 +104,6 @@ class CategoryActions extends Column
                         '__disableTmpl' => true,
                     ];
                 }
-                
             }
         }
 

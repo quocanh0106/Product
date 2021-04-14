@@ -1,4 +1,5 @@
 <?php
+
 namespace AHT\Product\Ui\Component\Listing\Column;
 
 use Magento\Catalog\Helper\Image;
@@ -49,14 +50,14 @@ class Thumbnail extends Column
      */
     public function prepareDataSource(array $dataSource)
     {
-        if(isset($dataSource['data']['items'])) {
+        if (isset($dataSource['data']['items'])) {
             $fieldName = $this->getData('name');
-            foreach($dataSource['data']['items'] as & $item) {
+            foreach ($dataSource['data']['items'] as &$item) {
                 $url = '';
-                if($item[$fieldName] != '') {
+                if ($item[$fieldName] != '') {
                     $url = $this->storeManager->getStore()->getBaseUrl(
                         \Magento\Framework\UrlInterface::URL_TYPE_MEDIA
-                    ).'product/index/'.$item[$fieldName];
+                    ) . 'product/index/' . $item[$fieldName];
                 }
                 $item[$fieldName . '_src'] = $url;
                 $item[$fieldName . '_alt'] = $this->getAlt($item) ?: '';

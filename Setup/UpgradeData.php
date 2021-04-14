@@ -19,7 +19,7 @@ class UpgradeData implements UpgradeDataInterface
 	{
 		if (version_compare($context->getVersion(), '1.0.2', '<')) {
 			$data = [
-				'name' => "Blazer 2", 
+				'name' => "Blazer 2",
 				'images' => "blazer2.jpg",
 				'description' => "blazer is great clothes"
 			];

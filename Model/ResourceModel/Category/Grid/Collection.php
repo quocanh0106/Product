@@ -1,4 +1,5 @@
 <?php
+
 namespace AHT\Product\Model\ResourceModel\Category\Grid;
 
 use AHT\Product\Model\Category;
@@ -12,7 +13,7 @@ use Psr\Log\LoggerInterface as Logger;
 
 class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult
 {
-   /**
+    /**
      * Value of seconds in one minute
      */
     const SECONDS_IN_MINUTE = 60;
@@ -51,5 +52,4 @@ class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvide
         $this->categoryModel = $categoryModel;
         parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $mainTable, $resourceModel);
     }
-
 }

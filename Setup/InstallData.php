@@ -26,4 +26,3 @@ class InstallData implements InstallDataInterface
         $post->addData($data)->save();
     }
 }
-?>

@@ -1,9 +1,11 @@
 <?php
+
 /**
  *
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace AHT\Product\Controller\Adminhtml\Category;
 
 use Magento\Framework\App\Action\HttpPostActionInterface;

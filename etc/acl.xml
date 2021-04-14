@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="AHT_Product::config_catalog" title="Catalog Configuration"/>
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="AHT_Product::menu" title="Custom Menu" sortOrder="10">
+                    <resource id="AHT_Product::test" title="Test" sortOrder="50" />
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

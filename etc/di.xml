@@ -37,7 +37,6 @@
             </argument>
         </arguments>
     </type>
-
     <!-- End Configure -->
 
     <!-- API Product-->
@@ -46,4 +45,11 @@
     <!-- API Category -->
     <preference for="AHT\Product\Api\CategoryRepositoryInterface" type="AHT\Product\Model\CategoryRepository" />
     <preference for="AHT\Product\Api\Data\CategoryInterface" type="AHT\Product\Model\Category"/>
+
+
+
+    <!-- Plugin demo -->
+    <type name="AHT\Product\Model\Product">
+        <plugin name="cache_price1" type="AHT\Product\Plugin\Product" sortOrder="20" />
+    </type>
 </config>

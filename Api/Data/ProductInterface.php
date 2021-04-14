@@ -95,4 +95,19 @@ interface ProductInterface
      * @return null
      */
     public function setPrice($price);
+
+    /**
+     * Get product new
+     *
+     * @return string|null
+     */
+    public function getNew();
+
+    /**
+     * Set product new
+     *
+     * @param string $is_new
+     * @return null
+     */
+    public function setNew($is_new);
 }

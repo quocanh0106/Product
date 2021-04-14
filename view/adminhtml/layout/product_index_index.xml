@@ -6,7 +6,7 @@
         </action>
     </referenceBlock>
     <body>
-       <!--  <referenceContainer name="content">
+        <!--  <referenceContainer name="content">
             <block class="Magento\Backend\Block\Template" template="AHT_Product::index.phtml"/>
         </referenceContainer> -->
         <referenceContainer name="content">

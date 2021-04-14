@@ -1,9 +1,11 @@
 <?php
+
 /**
  *
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace AHT\Product\Controller\Adminhtml\Category;
 
 use Magento\Framework\App\Action\HttpPostActionInterface;
@@ -34,7 +36,7 @@ class Delete extends \AHT\Product\Controller\Adminhtml\Category implements HttpP
             } catch (\Exception $e) {
                 // display error message
                 $this->messageManager->addErrorMessage($e->getMessage());
-                
+
                 // go back to edit form
                 return $resultRedirect->setPath('*/*/edit', ['id' => $id]);
             }

@@ -1,8 +1,10 @@
 <?php
+
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace AHT\Product\Model\Product;
 
 use Magento\Framework\File\Uploader;
@@ -263,10 +265,10 @@ class ImageUploader
          */
         $result['tmp_name'] = str_replace('\\', '/', $result['tmp_name']);
         $result['url'] = $this->storeManager
-                ->getStore()
-                ->getBaseUrl(
-                    \Magento\Framework\UrlInterface::URL_TYPE_MEDIA
-                ) . $this->getFilePath($baseTmpPath, $result['file']);
+            ->getStore()
+            ->getBaseUrl(
+                \Magento\Framework\UrlInterface::URL_TYPE_MEDIA
+            ) . $this->getFilePath($baseTmpPath, $result['file']);
         $result['name'] = $result['file'];
 
         if (isset($result['file'])) {

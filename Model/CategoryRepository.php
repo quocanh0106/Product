@@ -1,4 +1,5 @@
 <?php
+
 namespace AHT\Product\Model;
 
 use AHT\Product\Api\Data;
@@ -74,7 +75,7 @@ class CategoryRepository implements CategoryRepositoryInterface
                 $exception
             );
         }
-        
+
         return $post;
     }
 
@@ -128,7 +129,6 @@ class CategoryRepository implements CategoryRepositoryInterface
             "status" => 200,
             "message" => $post->getData()
         ));
-        
     }
 
 
@@ -155,7 +155,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     public function deleteById($postId)
     {
         $id = intval($postId);
-        if($this->resource->delete($this->getById($id))) {
+        if ($this->resource->delete($this->getById($id))) {
             return json_encode([
                 "status" => 200,
                 "message" => "Successfully"

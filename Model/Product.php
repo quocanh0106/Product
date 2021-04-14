@@ -1,31 +1,34 @@
 <?php
+
 namespace AHT\Product\Model;
 
 use \Magento\Framework\DataObject\IdentityInterface;
 use AHT\Product\Api\Data\ProductInterface;
 
 // class Product extends AbstractModel implements IdentityInterface
-class Product extends \Magento\Framework\Model\AbstractModel implements IdentityInterface, ProductInterface {
+class Product extends \Magento\Framework\Model\AbstractModel implements IdentityInterface, ProductInterface
+{
     const CACHE_TAG = 'aht_product_post';
 
     protected $_cacheTag = 'aht_product_post';
 
     protected $_eventPrefix = 'aht_product_post';
-    
+
     public function __construct(
-   	 \Magento\Framework\Model\Context $context,
-   	 \Magento\Framework\Registry $registry,
-   	 \Magento\Framework\Model\ResourceModel\AbstractResource $resource =
-   	 null,
-   	 \Magento\Framework\Data\Collection\AbstractDb $resourceCollection =
-   	 null,
-   	 array $data = []
+        \Magento\Framework\Model\Context $context,
+        \Magento\Framework\Registry $registry,
+        \Magento\Framework\Model\ResourceModel\AbstractResource $resource =
+        null,
+        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection =
+        null,
+        array $data = []
     ) {
-   	 parent::__construct($context, $registry, $resource,$resourceCollection, $data);
+        parent::__construct($context, $registry, $resource, $resourceCollection, $data);
     }
-    public function _construct() {
-		$this->_init('AHT\Product\Model\ResourceModel\Product');
-    }    
+    public function _construct()
+    {
+        $this->_init('AHT\Product\Model\ResourceModel\Product');
+    }
 
     public function getIdentities()
     {
@@ -47,7 +50,7 @@ class Product extends \Magento\Framework\Model\AbstractModel implements Identity
     {
         $this->setData('id', $id);
     }
-     
+
     public function getName()
     {
         return $this->getData('name');
@@ -55,7 +58,7 @@ class Product extends \Magento\Framework\Model\AbstractModel implements Identity
     public function setName($name)
     {
         $this->setData('name', $name);
-    } 
+    }
 
     public function getImages()
     {
@@ -64,7 +67,7 @@ class Product extends \Magento\Framework\Model\AbstractModel implements Identity
     public function setImages($images)
     {
         $this->setData('images', $images);
-    } 
+    }
 
     public function getCategoryid()
     {
@@ -82,7 +85,7 @@ class Product extends \Magento\Framework\Model\AbstractModel implements Identity
     public function setDescription($description)
     {
         $this->setData('description', $description);
-    } 
+    }
 
     public function getPrice()
     {
@@ -91,5 +94,13 @@ class Product extends \Magento\Framework\Model\AbstractModel implements Identity
     public function setPrice($price)
     {
         $this->setData('price', $price);
-    } 
+    }
+    public function getNew()
+    {
+        return $this->getData('is_new');
+    }
+    public function setNew($is_new)
+    {
+        $this->setData('is_new', $is_new);
+    }
 }
