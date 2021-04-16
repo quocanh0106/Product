@@ -64,23 +64,24 @@ class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvide
                     'aht_category.name_cate'
                 ]
                 );
+                
         $this->addFilterToMap('id', 'main_table.id');
+
         return $this;
     }
-    protected function newProduct()
-    {
-        $this->getSelect()
-            ->from(['main_table' => 'aht_product'])
-            ->joinLeft(
-                'aht_category',
-                'main_table.categoryid = aht_category.id',
-                [
-                    'aht_category.name_cate'
-                ]
-            )
-            ->order('id' .' '. \Magento\Framework\DB\Select::SQL_DESC)
-            ->addFieldToFilter('is_new',1);
-        $this->addFilterToMap('id', 'main_table.id');
-        return $this;
-    }
+    // public function newProduct()
+    // {
+    //     $this->getSelect()
+    //         ->from(['aht_product'])
+    //         ->joinLeft(
+    //             'aht_category',
+    //             'aht_product.categoryid = aht_category.id',
+    //             [
+    //                 'aht_category.name_cate'
+    //             ] 
+    //         )
+    //         ->order('id' .' '. \Magento\Framework\DB\Select::SQL_DESC);
+    //     $this->addFilterToMap('id', 'aht_product.id');
+    //     return $this;
+    // }
 }

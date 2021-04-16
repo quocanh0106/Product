@@ -1,17 +1,11 @@
 <?php
 
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-
 namespace AHT\Product\Model\Product;
 
-use Magento\Framework\File\Uploader;
+use AHT\Product\Model\Product\FileInfo;
+use Magento\Framework\App\ObjectManager;
 
-/**
- * Catalog image uploader
- */
+
 class ImageUploader
 {
     /**
@@ -69,11 +63,9 @@ class ImageUploader
     protected $allowedExtensions;
 
     /**
-     * List of allowed image mime types
-     *
-     * @var string[]
+     * @var Filesystem
      */
-    private $allowedMimeTypes;
+    private $fileInfo;
 
     /**
      * ImageUploader constructor
@@ -86,7 +78,6 @@ class ImageUploader
      * @param string $baseTmpPath
      * @param string $basePath
      * @param string[] $allowedExtensions
-     * @param string[] $allowedMimeTypes
      */
     public function __construct(
         \Magento\MediaStorage\Helper\File\Storage\Database $coreFileStorageDatabase,
@@ -94,10 +85,9 @@ class ImageUploader
         \Magento\MediaStorage\Model\File\UploaderFactory $uploaderFactory,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Psr\Log\LoggerInterface $logger,
-        $baseTmpPath = 'product/tmp/index/',
-        $basePath = 'product/index/',
-        $allowedExtensions,
-        $allowedMimeTypes = []
+        $baseTmpPath = 'product/tmp/index',
+        $basePath = 'product/index',
+        $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png']
     ) {
         $this->coreFileStorageDatabase = $coreFileStorageDatabase;
         $this->mediaDirectory = $filesystem->getDirectoryWrite(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA);
@@ -107,7 +97,6 @@ class ImageUploader
         $this->baseTmpPath = $baseTmpPath;
         $this->basePath = $basePath;
         $this->allowedExtensions = $allowedExtensions;
-        $this->allowedMimeTypes = $allowedMimeTypes;
     }
 
     /**
@@ -167,7 +156,7 @@ class ImageUploader
     }
 
     /**
-     * Retrieve allowed extensions
+     * Retrieve base path
      *
      * @return string[]
      */
@@ -193,42 +182,52 @@ class ImageUploader
      * Checking file for moving and move it
      *
      * @param string $imageName
-     * @param bool $returnRelativePath
+     *
      * @return string
      *
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function moveFileFromTmp($imageName, $returnRelativePath = false)
+    public function moveFileFromTmp($imageName)
     {
         $baseTmpPath = $this->getBaseTmpPath();
         $basePath = $this->getBasePath();
 
-        $baseImagePath = $this->getFilePath(
-            $basePath,
-            Uploader::getNewFileName(
-                $this->mediaDirectory->getAbsolutePath(
-                    $this->getFilePath($basePath, $imageName)
-                )
-            )
-        );
+        $baseImagePath = $this->getFilePath($basePath, $imageName);
         $baseTmpImagePath = $this->getFilePath($baseTmpPath, $imageName);
 
         try {
-            $this->coreFileStorageDatabase->copyFile(
-                $baseTmpImagePath,
-                $baseImagePath
-            );
-            $this->mediaDirectory->renameFile(
-                $baseTmpImagePath,
-                $baseImagePath
-            );
+            if ($this->getFileInfo()->isExist($imageName, $this->baseTmpPath)) {
+                $this->coreFileStorageDatabase->copyFile(
+                    $baseTmpImagePath,
+                    $baseImagePath
+                );
+                $this->mediaDirectory->renameFile(
+                    $baseTmpImagePath,
+                    $baseImagePath
+                );
+            }
         } catch (\Exception $e) {
             throw new \Magento\Framework\Exception\LocalizedException(
                 __('Something went wrong while saving the file(s).')
             );
         }
 
-        return $returnRelativePath ? $baseImagePath : $imageName;
+        return $imageName;
+    }
+
+    /**
+     * Get FileInfo instance
+     *
+     * @return FileInfo
+     *
+     * @deprecated 101.1.0
+     */
+    private function getFileInfo()
+    {
+        if ($this->fileInfo === null) {
+            $this->fileInfo = ObjectManager::getInstance()->get(FileInfo::class);
+        }
+        return $this->fileInfo;
     }
 
     /**
@@ -244,15 +243,13 @@ class ImageUploader
     {
         $baseTmpPath = $this->getBaseTmpPath();
 
-        /** @var \Magento\MediaStorage\Model\File\Uploader $uploader */
+        /* @var \Magento\MediaStorage\Model\File\Uploader $uploader /
         $uploader = $this->uploaderFactory->create(['fileId' => $fileId]);
         $uploader->setAllowedExtensions($this->getAllowedExtensions());
         $uploader->setAllowRenameFiles(true);
-        if (!$uploader->checkMimeType($this->allowedMimeTypes)) {
-            throw new \Magento\Framework\Exception\LocalizedException(__('File validation failed.'));
-        }
+
         $result = $uploader->save($this->mediaDirectory->getAbsolutePath($baseTmpPath));
-        unset($result['path']);
+        /*unset($result['path']);*/
 
         if (!$result) {
             throw new \Magento\Framework\Exception\LocalizedException(
@@ -265,10 +262,10 @@ class ImageUploader
          */
         $result['tmp_name'] = str_replace('\\', '/', $result['tmp_name']);
         $result['url'] = $this->storeManager
-            ->getStore()
-            ->getBaseUrl(
-                \Magento\Framework\UrlInterface::URL_TYPE_MEDIA
-            ) . $this->getFilePath($baseTmpPath, $result['file']);
+        ->getStore()
+        ->getBaseUrl(
+            \Magento\Framework\UrlInterface::URL_TYPE_MEDIA
+        ) . $this->getFilePath($baseTmpPath, $result['file']);
         $result['name'] = $result['file'];
 
         if (isset($result['file'])) {
@@ -284,5 +281,25 @@ class ImageUploader
         }
 
         return $result;
+    }
+
+    /**
+     * Delete the image name
+     *
+     * @param string $imageName
+     * @param string $type
+     *
+     * @return void
+     */
+    public function deleteImage($imageName, $type = 'dir')
+    {
+        $basePath = $this->getBasePath();
+        if ($type == 'tmp') {
+            $basePath = $this->getBaseTmpPath();
+        }
+
+        if ($this->getFileInfo()->isExist($imageName, $basePath)) {
+            $this->getFileInfo()->deleteFile($imageName, $basePath);
+        }
     }
 }

@@ -7,6 +7,8 @@ namespace AHT\Product\Controller\Adminhtml\Index;
 
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\ResultFactory;
+use AHT\Product\Model\Product\ImageUploader;
+use Magento\Backend\App\Action\Context;
 
 /**
  * Class Upload
@@ -16,33 +18,23 @@ class Upload extends \Magento\Backend\App\Action implements HttpPostActionInterf
     /**
      * Image uploader
      *
-     * @var \Magento\Catalog\Model\ImageUploader
+     * @var ImageUploader
      */
     protected $imageUploader;
 
     /**
      * Upload constructor.
      *
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Catalog\Model\ImageUploader $imageUploader
+     * @param Context $context
+     * @param ImageUploader $imageUploader
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \AHT\Product\Model\Product\ImageUploader $imageUploader
+        Context $context,
+        ImageUploader $imageUploader
     ) {
         parent::__construct($context);
         $this->imageUploader = $imageUploader;
     }
-
-    /**
-     * Check admin permissions for this controller
-     *
-     * @return boolean
-     */
-    // protected function _isAllowed()
-    // {
-    //     return $this->_authorization->isAllowed('AHT_Product::categories');
-    // }
 
     /**
      * Upload file controller action

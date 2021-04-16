@@ -4,11 +4,27 @@
         <label>Product Slider</label>
         <description>Posts</description>
         <parameters>
-            <parameter name="slidetoshow" visible="true" xsi:type="text">
-                <label>Slide to show</label>
+
+            <parameter name="slide" xsi:type="select" visible="true" required="true" sort_order="20">
+                <label translate="true">Slide or List</label>
+                <options>
+                    <option name="slider" value="1" selected="true">
+                        <label>Slide</label>
+                    </option>
+                    <option name="list" value="2">
+                        <label>List</label>
+                    </option>
+                </options>
             </parameter>
-            <parameter name="slidetoscroll" xsi:type="select" visible="true" required="true" sort_order="20">
-                <label translate="true">Slide to scroll</label>
+            <parameter name="productperpage" xsi:type="text" visible="true" required="true" sort_order="20">
+                <label translate="true">Number of product / page</label>
+                <value>5</value>
+            </parameter>
+            <parameter name="slidetoshow" xsi:type="select" visible="true" required="true" sort_order="20">
+                <label translate="true">Number of product in slide to show</label>
+                <depends>
+                    <parameter name="slide" value="1" />
+                </depends>
                 <options>
                     <option name="1" value="1">
                         <label>1</label>
@@ -27,10 +43,11 @@
                     </option>
                 </options>
             </parameter>
+
             <parameter name="template" xsi:type="select" required="true" visible="true">
                 <label translate="true">Template</label>
                 <options>
-                    <option name="default" value="product/index.phtml" selected="true">
+                    <option name="default" value="product/widget.phtml" selected="true">
                         <label translate="true">Product list slider</label>
                     </option>
                 </options>

@@ -33,21 +33,38 @@ class Index extends Template implements BlockInterface
     public function getDataBlocks()
     {
 
-        $product = $this->_collection;
+        $product = $this->_collection->addOrder('id' , \Magento\Framework\DB\Select::SQL_DESC)->addFieldToFilter('is_new',1);
         $items = $product->getItems();
         foreach ($items as $item) {
+        
             $itemData = $item->getData();
+            // if($itemData)
             $this->_loadedData[$item->getId()] = $itemData;
         }
 
         return $this->_loadedData;
     }
+    // public function getNewProduct()
+    // {
+
+    //     $product = $this->_collection->newProduct();
+    //     $items = $product->getItems();
+    //     foreach ($items as $item) {
+    //         $itemData = $item->getData();
+    //         $this->_loadedData[$item->getId()] = $itemData;
+    //     }
+
+    //     return $this->_loadedData;
+    // }
+
+
 
     public function getStoreManager()
     {
         return $this->_storeManager;
     }
 
+    //page
     public function getSlide()
     {
         $helper = $this->helper->getConfigValueSlide('slide');
@@ -64,4 +81,24 @@ class Index extends Template implements BlockInterface
         $helper = $this->helper->getConfigNumberProductSlide('numberpd');
         return $helper;
     }
+
+
+    //Widget
+    public function getSlideOrList()
+    {
+        return $this->getData('slide');
+    }
+    public function getSlideToShow()
+    {
+        return $this->getData('slidetoshow');
+    }
+    public function getProductPerPage()
+    {
+        if (!$this->hasData('productperpage')) {
+            $this->setData('productperpage', 5);
+        }
+        return $this->getData('productperpage');
+    }
+
+
 }

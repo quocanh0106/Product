@@ -9,11 +9,15 @@ use Magento\Customer\Model\SessionFactory;
 class Detail extends \Magento\Framework\App\Action\Action
 {
     protected $_resultPageFactory;
+    protected $_coreRegistry;
+
 
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
+        \Magento\Framework\Registry $coreRegistry
     ) {
+        $this->_coreRegistry = $coreRegistry;
         $this->_resultPageFactory = $resultPageFactory;
         parent::__construct($context);
     }
