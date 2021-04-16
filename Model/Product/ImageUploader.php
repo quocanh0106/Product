@@ -243,7 +243,7 @@ class ImageUploader
     {
         $baseTmpPath = $this->getBaseTmpPath();
 
-        /* @var \Magento\MediaStorage\Model\File\Uploader $uploader /
+        /* @var \Magento\MediaStorage\Model\File\Uploader $uploader */
         $uploader = $this->uploaderFactory->create(['fileId' => $fileId]);
         $uploader->setAllowedExtensions($this->getAllowedExtensions());
         $uploader->setAllowRenameFiles(true);
