@@ -1,10 +1,8 @@
 <?php
-
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-
 namespace AHT\Product\Controller\Adminhtml;
 
 abstract class Category extends \Magento\Backend\App\Action
@@ -14,7 +12,7 @@ abstract class Category extends \Magento\Backend\App\Action
      *
      * @see _isAllowed()
      */
-    const ADMIN_RESOURCE = 'AHT_Category::index';
+    const ADMIN_RESOURCE = 'AHT_Product::category';
 
     /**
      * Core registry
@@ -41,9 +39,10 @@ abstract class Category extends \Magento\Backend\App\Action
      */
     protected function initPage($resultPage)
     {
-        $resultPage->setActiveMenu('AHT_Category::index')
+        $resultPage->setActiveMenu('AHT_Product::category')
             ->addBreadcrumb(__('Category'), __('Category'))
             ->addBreadcrumb(__('All Category'), __('All Category'));
         return $resultPage;
     }
+
 }

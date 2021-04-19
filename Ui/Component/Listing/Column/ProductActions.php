@@ -91,7 +91,7 @@ class ProductActions extends Column
                         'label' => __('Edit'),
                         '__disableTmpl' => true,
                     ];
-                    $name = $this->getEscaper()->escapeHtml($item['name']);
+
                     $item[$name]['delete'] = [
                         'href' => $this->urlBuilder->getUrl(self::CMS_URL_PATH_DELETE, ['id' => $item['id']]),
                         'label' => __('Delete'),

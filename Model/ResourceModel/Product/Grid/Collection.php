@@ -69,19 +69,19 @@ class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvide
 
         return $this;
     }
-    // public function newProduct()
-    // {
-    //     $this->getSelect()
-    //         ->from(['aht_product'])
-    //         ->joinLeft(
-    //             'aht_category',
-    //             'aht_product.categoryid = aht_category.id',
-    //             [
-    //                 'aht_category.name_cate'
-    //             ] 
-    //         )
-    //         ->order('id' .' '. \Magento\Framework\DB\Select::SQL_DESC);
-    //     $this->addFilterToMap('id', 'aht_product.id');
-    //     return $this;
-    // }
+    public function cateProduct($categoryid)
+    {
+        $this->getSelect()
+            ->from('aht_product')
+            ->joinLeft(
+                'aht_category',
+                'aht_product.categoryid = aht_category.id',
+                [
+                    'aht_category.name_cate'
+                ] 
+            )
+            ->addFieldToFilter('categoryid', $categoryid);
+        $this->addFilterToMap('id', 'aht_product.id');
+        return $this;
+    }
 }

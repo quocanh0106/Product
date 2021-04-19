@@ -5,6 +5,7 @@ namespace AHT\Product\Model;
 use \Magento\Framework\DataObject\IdentityInterface;
 use AHT\Product\Api\Data\CategoryInterface;
 
+// class Product extends AbstractModel implements IdentityInterface
 class Category extends \Magento\Framework\Model\AbstractModel implements IdentityInterface, CategoryInterface
 {
     const CACHE_TAG = 'aht_category_post';
@@ -24,7 +25,6 @@ class Category extends \Magento\Framework\Model\AbstractModel implements Identit
     ) {
         parent::__construct($context, $registry, $resource, $resourceCollection, $data);
     }
-
     public function _construct()
     {
         $this->_init('AHT\Product\Model\ResourceModel\Category');
@@ -41,6 +41,7 @@ class Category extends \Magento\Framework\Model\AbstractModel implements Identit
 
         return $values;
     }
+
 
     public function getId()
     {

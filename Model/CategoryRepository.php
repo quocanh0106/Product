@@ -1,5 +1,4 @@
 <?php
-
 namespace AHT\Product\Model;
 
 use AHT\Product\Api\Data;
@@ -91,11 +90,12 @@ class CategoryRepository implements CategoryRepositoryInterface
         $Post = $this->PostFactory->create();
         $Post->load($postId);
         if (!$Post->getId()) {
-            throw new NoSuchEntityException(__('The CMS Post with the "%1" ID doesn\'t exist.', $PostId));
+            throw new NoSuchEntityException(__('The CMS Post with the "%1" ID doesn\'t exist.', $postId));
         }
         $result = $Post;
         return $result;
     }
+
 
     /**
      * function get all data
@@ -112,7 +112,6 @@ class CategoryRepository implements CategoryRepositoryInterface
      * Create post.
      *  
      * @return \AHT\Product\Api\Data\CategoryInterface
-     * 
      * @throws LocalizedException
      */
     public function createPost(CategoryInterface $post)
@@ -129,6 +128,7 @@ class CategoryRepository implements CategoryRepositoryInterface
             "status" => 200,
             "message" => $post->getData()
         ));
+        
     }
 
 
@@ -155,11 +155,12 @@ class CategoryRepository implements CategoryRepositoryInterface
     public function deleteById($postId)
     {
         $id = intval($postId);
-        if ($this->resource->delete($this->getById($id))) {
+        if($this->resource->delete($this->getById($id))) {
             return json_encode([
                 "status" => 200,
                 "message" => "Successfully"
             ]);
         }
     }
+
 }
