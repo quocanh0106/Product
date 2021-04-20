@@ -6,10 +6,38 @@
  */
 namespace AHT\Product\Controller\Adminhtml\Index;
 
+use AHT\Product\Helper\Data;
 use Magento\Framework\App\Action\HttpPostActionInterface;
+use AHT\Product\Api\ProductRepositoryInterface;
+use AHT\Product\Model\Product;
+use AHT\Product\Model\ProductFactory;
 
 class Delete extends \AHT\Product\Controller\Adminhtml\Product implements HttpPostActionInterface
 {
+    protected $_helper;
+    protected $_coreRegistry;
+    protected $_productFactory;
+    protected $_productRepository;  
+    
+    /**
+     * @param Context $context
+     * @param Registry $coreRegistry
+     * @param ProductFactory|null $productFactory
+     * @param ProductRepositoryInterface|null $productRepository
+     * @param CategoryFactory|null $categoryFactory
+     * @param CategoryRepositoryInterface|null $categoryRepository
+     */
+
+    public function __construct(\Magento\Backend\App\Action\Context $context, \Magento\Framework\Registry $coreRegistry, Data $helper, ProductFactory $productFactory = null, ProductRepositoryInterface $productRepository = null)
+    {
+        $this->_coreRegistry = $coreRegistry;
+        parent::__construct($context, $coreRegistry);
+        $this->_helper = $helper;
+        $this->_productFactory = $productFactory
+            ?: \Magento\Framework\App\ObjectManager::getInstance()->get(ProductFactory::class);
+        $this->_productRepository = $productRepository
+            ?: \Magento\Framework\App\ObjectManager::getInstance()->get(ProductRepositoryInterface::class);
+    }
     /**
      * Delete action
      *
@@ -24,7 +52,7 @@ class Delete extends \AHT\Product\Controller\Adminhtml\Product implements HttpPo
         if ($id) {
             try {
                 // init model and delete
-                $model = $this->_objectManager->create(\AHT\Product\Model\Product::class);
+                $model = $this->_productFactory->create();
                 $model->load($id);
                 $model->delete();
                 // display success message

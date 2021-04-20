@@ -63,6 +63,23 @@ class UpgradeSchema implements UpgradeSchemaInterface
 
             );
         };
+
+        if (version_compare($context->getVersion(), '1.0.5', '<')) {
+
+            $table = $setup->getTable('aht_product');
+    
+            $setup->getConnection()
+                ->addIndex(
+                    $table,
+                    $setup->getIdxName(
+                        $table,
+                        ['name', 'description', 'price'],
+                        \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
+                    ),
+                    ['name', 'description', 'price'],
+                    \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
+                );
+        }
         $setup->endSetup();
     }
 }

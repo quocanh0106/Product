@@ -84,7 +84,7 @@ class CategoryActions extends Column
     {
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as &$item) {
-                $name = $this->getData('name_cate');
+                $name = $this->getData('name');
                 if (isset($item['id'])) {
                     $item[$name]['edit'] = [
                         'href' => $this->urlBuilder->getUrl($this->editUrl, ['id' => $item['id']]),

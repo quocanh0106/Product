@@ -103,6 +103,9 @@
                 <dataType>text</dataType>
                 <label translate="true">Category</label>
                 <dataScope>categoryid</dataScope>
+                <validation>
+                    <rule name="validation-select" xsi:type="boolean">false</rule>
+                </validation>
             </settings>
             <formElements>
                 <select>
@@ -118,6 +121,9 @@
                 <notice translate="true">Some notice.</notice>
                 <label translate="true">Image Uploader Example</label>
                 <componentType>imageUploader</componentType>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
             </settings>
             <formElements>
                 <imageUploader>
@@ -140,6 +146,9 @@
                     <item name="source" xsi:type="string">description</item>
                     <item name="sortOrder" xsi:type="number">3</item>
                     <item name="dataScope" xsi:type="string">description</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
                 </item>
             </argument>
         </field>
@@ -152,6 +161,9 @@
                     <item name="source" xsi:type="string">price</item>
                     <item name="sortOrder" xsi:type="number">4</item>
                     <item name="dataScope" xsi:type="string">price</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
                 </item>
             </argument>
         </field>
